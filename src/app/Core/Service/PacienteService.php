@@ -20,35 +20,34 @@ class PacienteService
         protected PacienteUseCaseUpdate $UCPacientUpdate,
     ) {
     }
-/**
- * @param string filter
- * @return array
- * 
- **/  
+    /**
+     * @param string filter
+     * @return array
+     * 
+     **/
 
+    public function create(PacienteDto $dto): array
+    {
+        return $this->UCPacientCreate->execute($dto);
+    }
+
+    public function update(PacienteDto $dto): void
+    {
+        $this->UCPacientUpdate->execute($dto);
+    }
+
+    public function delete(int $id): void
+    {
+        $this->UCPacientDelete->execute($id);
+    }
+
+    public function find(int $id):array|null
+    {        
+        return $this->UCPacientSelect->execute($id);
+    }
+    
     public function all(string $filter = null): array
     {
         return $this->UCPacientSelectAll->execute($filter);
     }
-
-    public function find(int $id = null): stdClass|null
-    {
-        return $this->UCPacientSelect->execute($id);
-    }
-
-    public function update (PacienteDto $dto):void {
-
-        $this->UCPacientUpdate->execute($dto);
-    }
-
-    public function create(PacienteDto $dto):void {
-
-        $this->UCPacientCreate->execute($dto);
-    }
-
-    public function delete(int $id):void {
-
-        $this->UCPacientDelete->execute($id);
-    }
-
 }

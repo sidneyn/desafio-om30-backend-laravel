@@ -5,7 +5,8 @@ namespace App\Repository;
 use App\Core\Dto\PacienteDto;
 use App\Core\Port\IPacienteRepository;
 use App\Models\Paciente;
-use stdClass;
+//use PhpParser\Node\Expr\PreDec;
+
 
 class PacienteRepository implements IPacienteRepository
 {
@@ -13,35 +14,39 @@ class PacienteRepository implements IPacienteRepository
     {
         $this->model = $model;
     }
-     
-    public function all( string $filter = null)
+
+    public function create(PacienteDTO $dto): array
     {
-       return $this->model->all($filter);
+        $paciente = $this->model->create((array) $dto);
+        return $paciente->toArray();
     }
 
-    
-    public function find($id)
+    public function update(PacienteDTO $dto): bool
     {
-        $paciente = $this->model->with('Paciente')->find($id);
+        if (!$paciente = $this->model->find($dto->id)) {
+            return false;
+        }
+        $paciente->fill((array) $dto);
+        return $paciente->save();
+    }
+
+    public function delete(int $id): bool
+    {
+        $object = $this->model->findOrFail($id);
+        return $object->delete();
+    }
+
+    public function find($id): array|null
+    {
+        $paciente = $this->model->find($id);
         if (!$paciente) {
             return null;
         }
-
-        return (object) $paciente->toArray();
+        return (array) $paciente->toArray();
     }
-/*
-    public function update(PacienteDTO $dto): stdClass|null;
-    
-  */
-
-    public function create(PacienteDTO $dto): void
+     
+    public function all(): array|null
     {
-        $this->model->create((array) $dto);
-    }
-
-    public function delete(int $id): void
-    {
-        $object = $this->model->findOrFail($id);
-        $object->delete();
+       return $this->model->all()->toArray();
     }
 }

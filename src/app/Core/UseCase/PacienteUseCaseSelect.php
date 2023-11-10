@@ -12,8 +12,12 @@ class PacienteUseCaseSelect
     ) {
     }
 
-    public function execute(int $id): PacienteDto|null {
+    public function execute(int $id): array|null {
 
+        $array = $this->repository->find($id);       
+        if ($array){           
+            return $array;
+        }
         return null;
     }
 }

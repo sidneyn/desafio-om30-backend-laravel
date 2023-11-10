@@ -20,8 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 
-// Route::get('/paciente', [\App\Http\Controllers\Api\PacienteController::class, 'index']);
-// Route::post('/paciente', [\App\Http\Controllers\Api\PacienteController::class, 'store']);
-
 // router resource
 Route::apiResource('/paciente', \App\Http\Controllers\Api\PacienteController::class);
+Route::apiResource('/endereco', \App\Http\Controllers\Api\EnderecoController::class);

@@ -11,10 +11,10 @@ use App\Repository\PacienteRepository;
 
 class PacienteController extends Controller
 {
-    public function __construct(
-        protected PacienteService $service,
-        //protected PacienteRepository $repositorio
-    ) {
+    protected $repository;
+
+    public function __construct(PacienteRepository $repository) {
+        $this->repository = $repository;
     }
 
     /**
@@ -22,11 +22,7 @@ class PacienteController extends Controller
      */
     public function index(Request $request)
     {
-        /*
-        $array = $this->repositorio->find(1);
-        $array['nome']  = 'asdasdas';
-        $this->repositorio->update($array);
-        */
+        return response()->json($this->repository->all());
     }
 
     /**
@@ -35,17 +31,16 @@ class PacienteController extends Controller
     public function store(Request $request)
     {
         $dto = PacienteDto::makeDtoFromRequest($request);
-        return response()->json($this->service->create($dto,201));
-
-        //$this->service->delete(1007);
+        return response()->json($this->repository->create($dto), 201);
     }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
+    {        
+        $dto = $this->repository->find($id);                
+        return response()->json($dto);
     }
 
     /**
@@ -53,7 +48,10 @@ class PacienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $dto = PacienteDto::makeDtoFromRequest($request);
+        $dto->id = $id;
+        $success = $this->repository->update($dto);
+        response(null, ($success ? 200 : 400));
     }
 
     /**
@@ -61,6 +59,7 @@ class PacienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $success = $this->repository->delete($id);
+        response(null, ($success ? 200 : 400));
     }
 }

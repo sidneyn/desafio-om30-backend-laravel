@@ -11,6 +11,19 @@ class Endereco extends Model
 
     protected $table = 'endereco';
 
+    protected $fillable = [
+        'id_paciente',
+        'cep',
+        'endereco',
+        'numero',
+        'complemento',
+        'bairro',
+        'cidade',
+        'estado',
+        'created_at',
+        'updated_at',
+    ];
+
     public function paciente()
     {
         return $this->belongsTo(Paciente::class);

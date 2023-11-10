@@ -2,12 +2,12 @@
 
 namespace App\Core\UseCase;
 
-use App\Core\Port\IPacienteRepository;
+use App\Core\Port\IEnderecoRepository;
 
-class PacienteUseCaseDelete
+class EnderecoUseCaseDelete
 {
     public function __construct(
-        protected IPacienteRepository $repository
+        protected IEnderecoRepository $repository
     ) {
     }
 

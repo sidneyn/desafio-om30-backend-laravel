@@ -6,14 +6,13 @@ use stdClass;
 
 interface IPacienteRepository
 {
-    
-    public function all(string $filter = null);
+    public function create(PacienteDTO $dto): array;
 
-    public function find(int $id);
+    public function update(PacienteDTO $dto): bool;
 
-  //  public function update(PacienteDTO $dto): stdClass|null;
-    
-    public function create(PacienteDTO $dto): void;
-    
-    public function delete(int $id): void;
+    public function delete(int $id): bool;
+
+    public function find(int $id): array|null;
+
+    public function all(): array|null;
 }
