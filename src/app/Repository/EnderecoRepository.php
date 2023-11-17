@@ -43,9 +43,9 @@ class EnderecoRepository implements IEnderecoRepository
         return (array) $endereco->toArray();
     }
 
-    public function all(): array|null
+    public function all(array $filter = null): array|null
     {
-        return $this->model->all()->toArray();
+        return $this->model->where($filter[0], $filter[1])->get()->toArray();
     }
 }
 ?>

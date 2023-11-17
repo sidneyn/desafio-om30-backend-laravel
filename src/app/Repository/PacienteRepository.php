@@ -5,8 +5,6 @@ namespace App\Repository;
 use App\Core\Dto\PacienteDto;
 use App\Core\Port\IPacienteRepository;
 use App\Models\Paciente;
-//use PhpParser\Node\Expr\PreDec;
-
 
 class PacienteRepository implements IPacienteRepository
 {
@@ -38,15 +36,15 @@ class PacienteRepository implements IPacienteRepository
 
     public function find($id): array|null
     {
-        $paciente = $this->model->find($id);
+        $paciente = $this->model->findOrFail($id);
         if (!$paciente) {
             return null;
         }
         return (array) $paciente->toArray();
     }
      
-    public function all(): array|null
+    public function all(array $filter = null): array|null
     {
-       return $this->model->all()->toArray();
+        return $this->model->where($filter[0], $filter[1])->get()->toArray();
     }
 }

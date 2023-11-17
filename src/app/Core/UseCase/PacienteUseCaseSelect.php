@@ -2,7 +2,6 @@
 
 namespace App\Core\UseCase;
 
-use App\Core\Dto\PacienteDto;
 use App\Core\Port\IPacienteRepository;
 
 class PacienteUseCaseSelect

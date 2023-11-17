@@ -14,5 +14,5 @@ interface IPacienteRepository
 
     public function find(int $id): array|null;
 
-    public function all(): array|null;
+    public function all(array $filter = null): array|null;
 }

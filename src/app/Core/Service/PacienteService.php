@@ -31,9 +31,9 @@ class PacienteService
         return $this->UCPacientCreate->execute($dto);
     }
 
-    public function update(PacienteDto $dto): void
+    public function update(PacienteDto $dto): bool
     {
-        $this->UCPacientUpdate->execute($dto);
+        return $this->UCPacientUpdate->execute($dto);
     }
 
     public function delete(int $id): void
@@ -46,7 +46,7 @@ class PacienteService
         return $this->UCPacientSelect->execute($id);
     }
     
-    public function all(string $filter = null): array
+    public function all(array $filter = null): array|null
     {
         return $this->UCPacientSelectAll->execute($filter);
     }

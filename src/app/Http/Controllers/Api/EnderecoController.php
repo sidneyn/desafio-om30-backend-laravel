@@ -7,15 +7,14 @@ use Illuminate\Http\Request;
 use App\Core\Dto\EnderecoDto;
 
 use App\Core\Service\EnderecoService;
-use App\Repository\EnderecoRepository;
 
 class EnderecoController extends Controller
 {
     protected $repository;
 
-    public function __construct(EnderecoRepository $repository) 
-    {
-        $this->repository = $repository;
+    public function __construct(
+        protected EnderecoService $service
+    ){
     }
 
     /**
@@ -23,21 +22,22 @@ class EnderecoController extends Controller
      */
     public function index()
     {
-        return response()->json($this->repository->all());
+        return response()->json($this->service->all());
     }
 
     public function store (Request $request)
     {
         $dto = EnderecoDto::makeDtoFromRequest($request);
-        return response()->json($this->repository->create($dto));
+        $dados = $this->service->create($dto);
+        return response()->json($dados, count($dados) ? 201 : 400);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        $dto = $this->repository->find($id);
+        $dto = $this->service->find($request->endereco);
         return response()->json($dto);
     }
     
@@ -50,8 +50,8 @@ class EnderecoController extends Controller
     {
         $dto = EnderecoDto::makeDtoFromRequest($request);
         $dto->id = $id;
-        $sucess = $this->repository->update($dto);
-        response(null, ($sucess ? 200 : 400));
+        $sucess = $this->service->update($dto);
+        return response(null, ($sucess ? 201 : 400));
     }
 
     /**
@@ -59,7 +59,7 @@ class EnderecoController extends Controller
      */
     public function destroy(string $id)
     {
-        $sucess = $this->repository->delete($id);
-        response(null, ($sucess ? 200 : 400));
+        $sucess = $this->service->delete($id);
+        return response(null, ($sucess ? 200 : 400));
     }
 }

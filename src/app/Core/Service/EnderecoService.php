@@ -31,22 +31,22 @@ class EnderecoService
         return $this->UCEnderecoCreate->execute($dto);
     }
 
-    public function update(EnderecoDto $dto): void
+    public function update(EnderecoDto $dto): bool
     {
-        $this->UCEnderecoUpdate->execute($dto);
+        return $this->UCEnderecoUpdate->execute($dto);
     }
 
-    public function delete(int $id = null): void
+    public function delete(int $id): void
     {
         $this->UCEnderecoDelete->execute($id);
     }
 
-    public function find(int $id = null): array|null
+    public function find(int $id): array|null
     {
         return $this->UCEnderecoSelect->execute($id);
     }
     
-    public function all(string $filter = null): array|null
+    public function all(array $filter = null): array|null
     {
         return $this->UCEnderecoSelectAll->execute($filter);
     }
