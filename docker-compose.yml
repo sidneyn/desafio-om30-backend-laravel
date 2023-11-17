@@ -12,8 +12,8 @@ services:
       - ./src:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
     depends_on:
-      - app
       - db
+      - app
     networks:
       - laravel
 
@@ -50,8 +50,29 @@ services:
     ports:
       - "9000:9000"
     working_dir: /var/www
+    depends_on:
+      - db
+      - redis
     networks:
       - laravel
+
+  # queue
+  queue:
+    container_name: queue
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./src/:/var/www
+    working_dir: /var/www      
+    command: "php artisan queue:work"
+    depends_on:
+        - db
+        - app
+        - redis
+    networks:
+        - laravel      
 
   # PgAdmin Service
   pgadmin:

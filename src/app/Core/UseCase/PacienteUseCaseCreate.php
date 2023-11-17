@@ -12,12 +12,8 @@ class PacienteUseCaseCreate
     ) {
     }
 
-    public function execute(PacienteDto $dto):void {
-
-        if ($dto->nome == 'Beltrano') {
-            die('Beltrano está proibido de se cadastrar!');
-        }
-
-        $this->repository->create($dto);
+    public function execute(PacienteDto $dto): array
+    {
+        return $this->repository->create($dto);
     }
 }

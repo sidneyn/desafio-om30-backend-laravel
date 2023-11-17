@@ -12,8 +12,8 @@ class PacienteUseCaseUpdate
     ) {
     }
 
-    public function execute(PacienteDto $dto): bool {
-
-        return true;
+    public function execute(PacienteDto $dto): bool
+    {
+        return $this->repository->update($dto);
     }
 }

@@ -20,6 +20,10 @@ class Paciente extends Model
         'cns',
     ];
 
+    protected array $filters = [
+        CreatedAfterFilter::class,
+    ];
+
     public function endereco()
     {
         return $this->hasOne(Endereco::class);

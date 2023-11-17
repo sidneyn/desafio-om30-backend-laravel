@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Core\Port\IPacienteRepository;
 use App\Repository\PacienteRepository;
+use App\Core\Port\IEnderecoRepository;
+use App\Repository\EnderecoRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,12 +19,11 @@ class AppServiceProvider extends ServiceProvider
             IPacienteRepository::class,
             PacienteRepository::class
         );
-        /*
+        
         $this->app->bind(
             IEnderecoRepository::class,
             EnderecoRepository::class
         );
-        */
     }
 
     /**

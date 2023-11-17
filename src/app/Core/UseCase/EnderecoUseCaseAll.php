@@ -2,12 +2,12 @@
 
 namespace App\Core\UseCase;
 
-use App\Core\Port\IPacienteRepository;
+use App\Core\Port\IEnderecoRepository;
 
-class PacienteUseCaseAll
+class EnderecoUseCaseAll
 {
     public function __construct(
-        protected IPacienteRepository $repository
+        protected IEnderecoRepository $repository
     ) {
     }
 
@@ -16,3 +16,4 @@ class PacienteUseCaseAll
         return $this->repository->all($filter);
     }
 }
+?>

@@ -2,7 +2,6 @@
 
 namespace App\Core\UseCase;
 
-use App\Core\Dto\PacienteDto;
 use App\Core\Port\IPacienteRepository;
 
 class PacienteUseCaseSelect
@@ -12,8 +11,12 @@ class PacienteUseCaseSelect
     ) {
     }
 
-    public function execute(int $id): PacienteDto|null {
+    public function execute(int $id): array|null {
 
+        $array = $this->repository->find($id);       
+        if ($array){           
+            return $array;
+        }
         return null;
     }
 }

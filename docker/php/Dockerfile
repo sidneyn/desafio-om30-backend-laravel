@@ -6,12 +6,9 @@ RUN cd /tmp \
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
-RUN apt-get update \
-    && apt-get install -y libpq-dev wget git unzip zip \
-    && docker-php-ext-install pdo pdo_pgsql
-
 # Install useful tools
-RUN apt-get -y install apt-utils nano wget dialog vim
+RUN apt-get update \
+    && apt-get -y install apt-utils nano wget dialog vim
 
 # Install important libraries
 RUN echo "\e[1;33mInstall important libraries\e[0m"
@@ -31,8 +28,13 @@ RUN apt-get -y install --fix-missing \
     libicu-dev \
     libonig-dev \
     libxml2-dev
-    
+
 # Install Postgre PDO
-RUN apt-get install -y libpq-dev \
-    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo pdo_pgsql pgsql
+RUN apt-get install -y libpq-dev git unzip zip \
+    && docker-php-ext-install pdo pdo_pgsql pgsql \
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+
+# Install Redis Extension
+RUN pecl install -o -f redis \
+    && rm -rf /tmp/pear \ 
+    && docker-php-ext-enable redis

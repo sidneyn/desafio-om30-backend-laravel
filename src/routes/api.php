@@ -1,7 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use \App\Http\Controllers\Api\CepController;
+use App\Http\Controllers\Api\EnderecoController;
+use \App\Http\Controllers\Api\PacienteController;
+use \App\Http\Controllers\Api\PacienteCsvController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +24,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 
-// Route::get('/paciente', [\App\Http\Controllers\Api\PacienteController::class, 'index']);
-// Route::post('/paciente', [\App\Http\Controllers\Api\PacienteController::class, 'store']);
+// router resource 
+######  checar routes  php artisan route:list  ######
 
-// router resource
-Route::apiResource('/paciente', \App\Http\Controllers\Api\PacienteController::class);
+############## documentacão para implementar as rotas ##############
+# https://laravel.com/docs/10.x/routing#route-group-subdomain-routing
+############## 
+
+Route::apiResource('/paciente', PacienteController::class);
+Route::get('/paciente/list/{paciente}', [PacienteController::class, 'list']);
+Route::get('/cep/{cep}', [CepController::class, 'index']);
+Route::post('/paciente-csv', [PacienteCsvController::class,'arquivo']);
+
+Route::apiResource('/endereco', EnderecoController::class);

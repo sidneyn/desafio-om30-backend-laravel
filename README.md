@@ -1,50 +1,72 @@
-# Install and Set Up Laravel with Docker Compose
+## Desafio - OM30 - Backend Laravel
 
-Setting up Laravel in the local environment with Docker using the LEMP stack that includes: Nginx, MySQL, PHP, and phpMyAdmin.
+Passo a passo para rodar o projeto
 
-## Why use Docker for Development
+1 - git clone https://github.com/sidneyn/desafio-om30-backend-laravel.git
 
-- [x] Consistent development environment for the entire team.
-- [x] You don't need to install a bunch of language environments on your system.
-- [x] You can use different versions of the same programming language.
-- [x] Deployment is easy
+Levante os containers do projeto.
+```sh
+docker-compose up -d
+```
 
-## How to Install and Run the Project
+Acesse o container
+```sh
+docker-compose exec app bash
+```
 
-1. ``` git clone git@github.com:hanieas/Docker-Laravel.git ```
-2. ``` docker-compose exec app composer install ```
-3. Copy ```.env.example``` to ```.env```
-4. ```docker-compose build```
-5. ```docker compose up -d```
-6. You can see the project on ```127.0.0.1:8080```
+Instale as dependências do projeto
+```sh
+composer install
+```
 
-## How to use MySQL as a database
+Execute a migration para criação das tabelas.
+```sh
+php artisan migrate
+```
 
-1. Uncomment the MySQL configuration inside the ```docker-compose.yml``` including: ```db``` and ```phpMyAdmin```
-2. Copy ```.env.example``` to ```.env```
-3. Change ```DB_CONNECTION``` to ```mysql```
-4. Change ```DB_PORT``` to ```3306```
-5. Open the ```phpMyAdmin``` on ```127.0.0.1:3400```
+Execute a migration para criação dos registros fake.
+```sh
+php artisan db:seed
+```
 
-## How to use PostgreSQL as a database
+### Objetivo
 
-1. Uncomment the PostgreSQL configuration inside the ```docker-compose.yml``` including: ```db``` and ```pgamdin```
-2. Copy ```.env.example``` to ```.env```
-3. Change ```DB_CONNECTION``` to ```pgsql```
-4. Change ```DB_PORT``` to ```5432```
-5. Open the ```pgAdmin``` on ```127.0.0.1:5050```
+Desenvolver uma API de cadastro de pacientes, do qual possamos testar toda sua capacidade de criação de arquitetura, qualidade do código, validações e usabilidade.
 
-## How to run Laravel Commands with Docker Compose
+### Requisitos
 
-1. ```cd src```
-2. ```docker-compose exec app php artisan {your command}``` 
+Sua aplicação deve:
 
-## Medium
+- Obrigatoriamente para o desenvolvimento do back-end utilizar o framework Laravel.
 
-https://medium.com/@hanieasemi/setting-up-a-laravel-local-environment-with-docker-7541ae170daf
+- Obrigatoriamente a API deve estar nos padrões RESTful.
 
-## YouTube 
+### Dados
 
-https://www.youtube.com/watch?v=6ANYowpB910
+- Desenvolver uma listagem de pacientes com busca, do qual deve-se permitir a adição, edição, visualização e exclusão de cada um dos pacientes.
 
-https://www.youtube.com/watch?v=gZfCAIGsz_o
+- Cada paciente deve ter um endereço cadastrado em uma tabela à parte.
+
+- Utilizar para banco de dados PostgreSQL e Redis (Cache e Queue).
+
+- Utilizar migration, factory, faker e seeder.
+
+- Criar um endpoint para listagem onde seja possível consultar pacientes pelo nome ou CPF.
+
+- Criar um endpoint para obter os dados de um único pacientes (paciente e seu endereço).
+
+- Criar endpoints de cadastro e atualização de paciente, contendo os campos e suas respectivas validações (Obs: use tudo que o framework(Laravel) te oferece para não criar códigos repetidos e desnecessários):
+
+  - Foto do Paciente;
+  - Nome Completo do Paciente;
+  - Nome Completo da Mãe;
+  - Data de Nascimento;
+  - CPF;
+  - CNS;
+  - Endereço completo, (CEP, Endereço, Número, Complemento, Bairro, Cidade e Estado)*;
+
+ - Criar um endpoint para excluir um paciente (paciente e seu endereço).
+
+ - Criar um endpoint para consulta de CEP que implemente a API do ViaCEP e faça cache (Redis) dos dados para futuras consultas.
+
+ - Criar um endpoint que faça importação de dados (pacientes) via arquivo .csv e seja processada em queue **assincronamente**.
