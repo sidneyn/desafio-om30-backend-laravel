@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "e9844091-ab41-4765-a33c-bfa1d8a947fc",
+		"name": "desafio-om30",
+		"description": "Projeto de teste desafio para vaga na OM-30",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "4037632"
+	},
+	"item": [
+		{
+			"name": "Listar Pacientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/paciente/list/896"
+			},
+			"response": []
+		},
+		{
+			"name": "Exibir Paciente",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:8080/api/paciente/122"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Paciente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 122,\r\n    \"foto_paciente\": \"https:\\/\\/via.placeholder.com\\/640x480.png\\/00dd33?text=neque\",\r\n    \"nome\": \"Coxinha\",\r\n    \"nome_mae\": \"Mrs. Nicole Schamberger\",\r\n    \"data_nascimento\": \"2008-07-05\",\r\n    \"cpf\": \"279\",\r\n    \"cns\": \"Loyce Reichert\",\r\n    \"created_at\": \"2006-03-04T19:24:23.000000Z\",\r\n    \"updated_at\": \"2023-11-06T03:47:36.000000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/paciente/122"
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Paciente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"foto_paciente\": \"\",\r\n  \"nome\": \"Sidney Novo\",\r\n  \"nome_mae\": \"Hallie Welch\",\r\n  \"data_nascimento\": \"1996-12-30\",\r\n  \"cpf\": \"896\",\r\n  \"cns\": \"Dr. Nils Nader IV\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/paciente/"
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Paciente Com Endereço",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"foto_paciente\": \"\",\r\n    \"nome\": \"Sidney Novo\",\r\n    \"nome_mae\": \"Hallie Welch\",\r\n    \"data_nascimento\": \"1996-12-30\",\r\n    \"cpf\": \"896\",\r\n    \"cns\": \"Dr. Nils Nader IV\",\r\n    \"endereco\": {\r\n        \"cep\": \"253\",\r\n        \"endereco\": \"999 avenida 1 \",\r\n        \"numero\": \"160\",\r\n        \"complemento\": \"Kitnet\",\r\n        \"bairro\": \"Cond\",\r\n        \"cidade\": \"Recife\",\r\n        \"estado\": \"Alagoas\",\r\n        \"created_at\": \"2023-11-06T03:47:39.000000Z\",\r\n        \"updated_at\": \"2023-11-06T03:47:39.000000Z\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/paciente/"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Paciente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/paciente/1034"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Paciente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/paciente/1064"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza Endereco",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"id_paciente\": 2,\r\n    \"cep\": \"253\",\r\n    \"endereco\": \"999 avenida 1 jjjjjj \",\r\n    \"numero\": \"160\",\r\n    \"complemento\": \"Kitnet\",\r\n    \"bairro\": \"Cond\",\r\n    \"cidade\": \"Recife\",\r\n    \"estado\": \"Alagoas\",\r\n    \"created_at\": \"2023-11-06T03:47:39.000000Z\",\r\n    \"updated_at\": \"2023-11-06T03:47:39.000000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/endereco/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Endereco",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/endereco"
+			},
+			"response": []
+		},
+		{
+			"name": "Mostrar Endereco",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/endereco/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Endereco",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/endereco/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Endereco",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"id_paciente\": 2,\r\n    \"cep\": \"253\",\r\n    \"endereco\": \"999 avenida 1 \",\r\n    \"numero\": \"160\",\r\n    \"complemento\": \"Kitnet\",\r\n    \"bairro\": \"Cond\",\r\n    \"cidade\": \"Recife\",\r\n    \"estado\": \"Alagoas\",\r\n    \"created_at\": \"2023-11-06T03:47:39.000000Z\",\r\n    \"updated_at\": \"2023-11-06T03:47:39.000000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/endereco"
+			},
+			"response": []
+		},
+		{
+			"name": "CEP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/cep/54270090"
+			},
+			"response": []
+		},
+		{
+			"name": "Paciente CSV",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "csv",
+							"type": "file",
+							"src": "/Z:/home/sidne/desafio/src/storage/app/paciente.csv"
+						}
+					]
+				},
+				"url": "http://localhost:8080/api/paciente-csv"
+			},
+			"response": []
+		}
+	]
+}
